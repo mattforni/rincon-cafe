@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :get_order, except: :create
-  around_action :json_only
+  respond_to :json
 
   def create
     @order = Order.create!(order_params)
