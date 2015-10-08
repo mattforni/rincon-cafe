@@ -1,2 +1,4 @@
 ## Sign In via cUrl
 curl -H 'Content-Type: application/json' -H 'Accept: application/json' -X POST http://localhost:8080/users/sign_in -d '{"user" : { "email" : "mfornaciari@salesforce.com", "password" : "test1234"}}'
+curl -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'X-API-EMAIL: mfornaciari@salesforce.com' -H 'X-API-TOKEN: _ktiohahb6-qoKtqaVAQ82opcAqlh6GAspJxQUXkxKx' -X POST http://localhost:8080/users/sign_in
+

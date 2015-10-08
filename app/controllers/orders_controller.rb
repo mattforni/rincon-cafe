@@ -3,7 +3,10 @@ class OrdersController < ApplicationController
   respond_to :json
 
   def create
-    @order = Order.create!(order_params)
+    params = order_params
+    params[:user_id] = current_user.id
+    @order = Order.create!(params)
+    render json: { message: 'Order placed' }, success: true, status: :created
   end
 
   def destroy
