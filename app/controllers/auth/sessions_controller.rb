@@ -8,14 +8,13 @@ class Auth::SessionsController < Devise::SessionsController
     respond_to do |format|
       format.html { super }
       format.json {
-        puts params.inspect
-        resource = resource_class.find_for_database_authentication({ email: params[:email] })
-        if resource.nil? or !resource.valid_password?(params[:password])
+        user = User.where({ email: params[:user][:email] }).first
+        if user.nil? or !user.valid_password?(params[:user][:password])
           warden.custom_failure!
           render json: { message: 'Invalid credentials' }, status: 401 and return
         end
 
-        render json: resource.as_json, success: true, status: :created
+        render json: user.as_json, success: true, status: :created
       }
     end
   end
