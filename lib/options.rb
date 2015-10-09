@@ -1,3 +1,6 @@
+# TODO change all to maps instead of arrays
+# and change usage across the entire app
+
 module Options 
   BEVERAGE = [
     'americano',
@@ -32,6 +35,15 @@ module Options
     'soy',
     'whole'
   ]
+
+  STATUSES = {
+    abandonded: 'abandonded',
+    cancelled: 'cancelled',
+    in_progress: 'in_progress',
+    made: 'made',
+    pending: 'pending',
+    retrieved: 'retrieved'
+  }
 
   TEMPERATURE = [
     'cold',

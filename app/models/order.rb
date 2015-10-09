@@ -17,5 +17,20 @@ class Order < ActiveRecord::Base
 
   # Associations
   belongs_to :user
+
+  # TODO test
+  def self.last(user)
+    Order.where({user: user}).order(created_at: :desc).limit(1).first
+  end
+
+  def viewable_attributes
+    attrs = self.attributes.reject do |key, _|
+      HIDDEN_ATTRIBUTES.include?(key.to_sym)
+    end
+  end
+
+  private
+
+  HIDDEN_ATTRIBUTES = [:id, :created_at, :updated_at, :user_id]
 end
 

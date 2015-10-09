@@ -18,4 +18,5 @@
 # Ignore the cruft
 *.swp
 response.html
+.DS_Store
 

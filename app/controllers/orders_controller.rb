@@ -1,15 +1,27 @@
+require 'options'
+
 class OrdersController < ApplicationController
-  before_action :get_order, except: :create
+  before_action :get_order, except: [:create, :last]
   respond_to :json
 
   def create
-    params = order_params
+    params = create_params
     params[:user_id] = current_user.id
+    params[:status] = Options::STATUSES[:pending]
     @order = Order.create!(params)
     render json: { message: 'Order placed' }, success: true, status: :created
   end
 
   def destroy
+  end
+
+  # TODO test
+  def last
+    @order = Order.last(current_user)
+    respond_to do |format|
+      format.html
+      format.json { render json: @order.as_json, success: true, status: :ok }
+    end
   end
 
   def show
@@ -24,7 +36,7 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
   end
 
-  def order_params
+  def create_params
     params.require(:order).permit(
       :beverage,
       :decaf,
@@ -32,8 +44,7 @@ class OrdersController < ApplicationController
       :milk,
       :notes,
       :shots,
-      :status,
-      :temperature,
+      :temperature
     )
   end
 end
