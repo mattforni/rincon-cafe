@@ -49,7 +49,7 @@ class OrdersController < ApplicationController
       :milk,
       :notes,
       :shots,
-      :temperature
+      :temperature,
     )
   end
 end

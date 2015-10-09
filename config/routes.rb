@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'application#splash'
+  root 'queue#index'
 
   devise_for :users, controllers: {sessions: 'auth/sessions', registrations: 'auth/registrations'}
 

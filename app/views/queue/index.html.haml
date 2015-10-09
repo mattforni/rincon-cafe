@@ -1,0 +1,7 @@
+- if @queue.empty?
+  -# TODO make order a link to new
+  = 'The queue is empty! Hurry and order!'
+- else
+  - @queue.each do |order|
+    = order_partial order
+

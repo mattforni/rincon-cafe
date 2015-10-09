@@ -23,14 +23,41 @@ class Order < ActiveRecord::Base
     Order.where({user: user}).order(created_at: :desc).limit(1).first
   end
 
+  # TODO test
+  def self.queue
+    Order.where({status: STATUSES[:pending]}).order(created_at: :desc)
+  end
+
+  # TODO test
+  def self.queue_full?
+    self.queue.size >= MAX_QUEUE_SIZE
+  end
+
+  def pending?
+    self.status == STATUSES[:pending]
+  end
+
+  def queue_position
+    # If the status is not pending, there is no queue position
+    return unless self.pending?
+
+    Order.queue.each_with_index do |item, index|
+      return index if item.id == self.id
+    end
+  end
+
   def viewable_attributes
     attrs = self.attributes.reject do |key, _|
       HIDDEN_ATTRIBUTES.include?(key.to_sym)
     end
+    attrs[:ordered_by] = self.user.email
+    attrs[:queue_position] = self.queue_position if self.pending?
+    return attrs
   end
 
   private
 
   HIDDEN_ATTRIBUTES = [:id, :updated_at, :user_id]
+  MAX_QUEUE_SIZE = 25
 end
 
