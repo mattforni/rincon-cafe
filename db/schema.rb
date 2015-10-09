@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151008005149) do
+ActiveRecord::Schema.define(version: 20151009082417) do
 
   create_table "orders", force: :cascade do |t|
     t.integer  "user_id",                                                  null: false
@@ -30,14 +30,14 @@ ActiveRecord::Schema.define(version: 20151008005149) do
   add_index "orders", ["user_id", "created_at"], name: "index_orders_on_user_id_and_created_at", unique: true
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                              null: false
-    t.string   "encrypted_password",                 null: false
-    t.string   "token",                              null: false
-    t.datetime "token_expiration",                   null: false
+    t.string   "email",                                  null: false
+    t.string   "encrypted_password",                     null: false
+    t.string   "token",                                  null: false
+    t.datetime "token_expiration",                       null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0, null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -47,8 +47,9 @@ ActiveRecord::Schema.define(version: 20151008005149) do
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
     t.string   "udid"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.boolean  "admin",                  default: false, null: false
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

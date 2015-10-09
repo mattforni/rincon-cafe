@@ -31,6 +31,6 @@ class Order < ActiveRecord::Base
 
   private
 
-  HIDDEN_ATTRIBUTES = [:id, :created_at, :updated_at, :user_id]
+  HIDDEN_ATTRIBUTES = [:id, :updated_at, :user_id]
 end
 

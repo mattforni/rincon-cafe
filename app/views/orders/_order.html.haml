@@ -1,9 +1,15 @@
-%table.order
-  - order.viewable_attributes.each_pair do |key, value|
-    - if !value.nil?
-      %tr
-        %td
-          = key
-        %td
-          = value
+.order
+  %table.order
+    - order.viewable_attributes.each_pair do |key, value|
+      - if !value.nil?
+        %tr
+          %td
+            = key
+          %td
+            = value
+    %tr
+      %td
+        = link_to 'Edit', edit_order_path(order) if can?(:update, order) 
+      %td
+        = button_to 'Cancel', order_path(order), data: { confirm: 'You sure?' }, method: :delete if can?(:destroy, order)
 

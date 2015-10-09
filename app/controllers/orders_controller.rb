@@ -1,9 +1,10 @@
 require 'options'
 
 class OrdersController < ApplicationController
-  before_action :get_order, except: [:create, :last]
-  respond_to :json
+  load_and_authorize_resource except: [:index, :last]
+  respond_to :json, except: [:index, :edit]
 
+  # TODO test
   def create
     params = create_params
     params[:user_id] = current_user.id
@@ -16,12 +17,20 @@ class OrdersController < ApplicationController
   end
 
   # TODO test
+  def edit
+  end
+
+  # TODO test
   def last
     @order = Order.last(current_user)
     respond_to do |format|
       format.html
       format.json { render json: @order.as_json, success: true, status: :ok }
     end
+  end
+
+  def index
+    @orders = Order.where({user: current_user}).order(created_at: :desc).limit(10)
   end
 
   def show
@@ -31,10 +40,6 @@ class OrdersController < ApplicationController
   end
 
   private
-
-  def get_order
-    @order = Order.find(params[:id])
-  end
 
   def create_params
     params.require(:order).permit(

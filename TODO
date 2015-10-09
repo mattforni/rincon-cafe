@@ -1,2 +1,3 @@
 - Add cancan to restrict who can create/modify resources
+- Cancan exception handling (https://github.com/ryanb/cancan/wiki/exception-handling)
 
