@@ -1,3 +1,3 @@
-- Add cancan to restrict who can create/modify resources
+- Update registration to include 'name'
 - Cancan exception handling (https://github.com/ryanb/cancan/wiki/exception-handling)
 
