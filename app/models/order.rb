@@ -19,11 +19,6 @@ class Order < ActiveRecord::Base
   belongs_to :user
 
   # TODO test
-  def self.last(user)
-    Order.where({user: user}).order(created_at: :desc).limit(1).first
-  end
-
-  # TODO test
   def self.queue
     Order.where({status: STATUSES[:pending]}).order(created_at: :desc)
   end

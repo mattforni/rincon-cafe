@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  root 'queue#index'
+  root 'cafe#queue'
+  get 'closed', to: 'cafe#closed', as: 'cafe_closed'
 
   devise_for :users, controllers: {sessions: 'auth/sessions', registrations: 'auth/registrations'}
 

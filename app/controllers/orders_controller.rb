@@ -1,16 +1,28 @@
 require 'options'
 
 class OrdersController < ApplicationController
-  load_and_authorize_resource except: [:index, :last]
+  before_action :closed?, only: [:create, :destroy, :update]
+  load_and_authorize_resource except: [:create, :index, :last]
   respond_to :json, except: [:index, :edit]
 
   # TODO test
   def create
+    return if closed?
+
     params = create_params
     params[:user_id] = current_user.id
     params[:status] = Options::STATUSES[:pending]
     @order = Order.create!(params)
-    render json: { message: 'Order placed' }, success: true, status: :created
+
+    respond_to do |format|
+      format.html {
+        # TODO add alert
+        redirect_to root_path
+      }
+      format.json {
+        render json: { message: 'Order placed' }, success: true, status: :created
+      }
+    end
   end
 
   def destroy
@@ -22,10 +34,12 @@ class OrdersController < ApplicationController
 
   # TODO test
   def last
-    @order = Order.last(current_user)
+    @last = current_user.orders.last
     respond_to do |format|
       format.html
-      format.json { render json: @order.as_json, success: true, status: :ok }
+      format.json {
+        render json: @last.as_json, success: true, status: :ok
+      }
     end
   end
 

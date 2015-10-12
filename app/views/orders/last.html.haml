@@ -1,4 +1,5 @@
-- if @order.nil?
+- if @last.nil?
   = 'You haven\'t ordered anything yet, get on it!'
 - else
-  = order_partial @order
+  = order_partial @last
+
