@@ -9,10 +9,6 @@ class User < ActiveRecord::Base
 
   before_save :handle_token
 
-  def as_json
-    { user: { email: self.email, token: self.token } }.to_json
-  end
-
   def reset_token!
     handle_token(true)
     self.save!
@@ -39,7 +35,30 @@ class User < ActiveRecord::Base
     false
   end
 
+  def visible_attributes
+    attrs = self.attributes.reject do |key, _|
+      HIDDEN_ATTRIBUTES.include?(key.to_sym)
+    end
+  end
+
   private
+
+  HIDDEN_ATTRIBUTES = [
+    :confirmation_token,
+    :confirmed_at,
+    :confirmation_sent_at,
+    :created_at,
+    :encrypted_password,
+    :id,
+    :remember_created_at,
+    :reset_password_token,
+    :reset_password_sent_at,
+    :token,
+    :token_expiration,
+    :udid,
+    :unconfirmed_email,
+    :updated_at
+  ]
 
   def handle_token(force = false)
     # If the token has never been set or has expired, update it
