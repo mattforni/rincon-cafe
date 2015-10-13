@@ -1,4 +1,5 @@
 require 'options'
+require 'notifications'
 
 class OrdersController < ApplicationController
   before_action :closed?, only: [:create, :destroy, :update]
@@ -40,6 +41,8 @@ class OrdersController < ApplicationController
     params[:status] = Options::STATUSES[:pending]
     @order = Order.create!(params)
 
+    Notifications.ios(current_user, 'Your order is now in the queue')
+
     respond_to do |format|
       format.html {
         # TODO add alert
@@ -68,14 +71,17 @@ class OrdersController < ApplicationController
     @last = current_user.orders.last
   end
 
+  # TODO test
   def index
     @orders = Order.where({user: current_user}).order(created_at: :desc).limit(10)
   end
 
+  # TODO test
   def show
   end
 
   def update
+    # TODO implement
   end
 
   private
