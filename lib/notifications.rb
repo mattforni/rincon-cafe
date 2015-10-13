@@ -8,7 +8,7 @@ module Notifications
 
     data = {
         "deviceType": "ios",
-        "deviceToken": user.udid 
+        "deviceToken": user.udid,
         "channels": [
           "CafeQ"
         ],
@@ -17,7 +17,6 @@ module Notifications
           "sound": "default"
         }
     }.to_json
-    puts "Sending: \n#{send}"
 
     uri = URI.parse("https://api.parse.com/1/push")
     https = Net::HTTP.new(uri.host, uri.port)
@@ -27,7 +26,6 @@ module Notifications
     req['X-Parse-REST-API-Key'] = '11GJgVK5zTJNvNtlBcymYQNoWuAIjucDhipOnfe3'
     req.body = send
     res = https.request(req)
-    puts "Response #{res.code} #{res.message}: #{res.body}"
   end
 end
 
