@@ -24,7 +24,7 @@ module Notifications
     req = Net::HTTP::Post.new(uri.path, initheader = {'Content-Type' =>'application/json'})
     req['X-Parse-Application-Id'] = 'I90LbfQuYYVY9eggmU9ULhenz1q8r4xAi82udZk3'
     req['X-Parse-REST-API-Key'] = '11GJgVK5zTJNvNtlBcymYQNoWuAIjucDhipOnfe3'
-    req.body = send
+    req.body = data
     res = https.request(req)
   end
 end

@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
     return false if last.nil?
 
     # Otherwise check to see if the last order was within the past hour
-    last.created_at.to_i < (Time.now + 1.hour).to_i
+    last.created_at.to_i > 1.hour.ago.to_i
   end
 
   def token_expired?
