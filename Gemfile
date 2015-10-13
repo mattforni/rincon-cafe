@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 ruby '2.2.2'
 
 # Core gems
+gem 'jbuilder', '~> 2.3'
 gem 'rails', '~> 4.1'
 gem 'puma', '~> 2'
 gem 'rack-timeout', '~> 0.2'

@@ -20,12 +20,16 @@ class Order < ActiveRecord::Base
 
   # TODO test
   def self.queue
-    Order.where({status: STATUSES[:pending]}).order(created_at: :desc)
+    Order.where({status: STATUSES[:pending]}).order(created_at: :desc).limit(MAX_QUEUE_SIZE)
   end
 
   # TODO test
   def self.queue_full?
     self.queue.size >= MAX_QUEUE_SIZE
+  end
+
+  def ordered_by
+    user.email
   end
 
   def pending?
@@ -41,13 +45,13 @@ class Order < ActiveRecord::Base
     end
   end
 
-  def viewable_attributes
+  def visible_attributes
     attrs = self.attributes.reject do |key, _|
       HIDDEN_ATTRIBUTES.include?(key.to_sym)
     end
     attrs[:ordered_by] = self.user.email
     attrs[:queue_position] = self.queue_position if self.pending?
-    return attrs
+    attrs
   end
 
   private

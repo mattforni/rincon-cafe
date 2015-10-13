@@ -3,7 +3,6 @@ require 'options'
 class OrdersController < ApplicationController
   before_action :closed?, only: [:create, :destroy, :update]
   load_and_authorize_resource except: [:create, :index, :last]
-  respond_to :json, except: [:index, :edit]
 
   # TODO test
   def create
@@ -20,7 +19,7 @@ class OrdersController < ApplicationController
         redirect_to root_path
       }
       format.json {
-        render json: { message: 'Order placed' }, success: true, status: :created
+        render success: true, status: :created
       }
     end
   end
@@ -28,19 +27,18 @@ class OrdersController < ApplicationController
   def destroy
   end
 
-  # TODO test
   def edit
+    # TODO implement
+
+    respond_to do |format|
+      format.html
+      format.json { json_unsupported }
+    end
   end
 
   # TODO test
   def last
     @last = current_user.orders.last
-    respond_to do |format|
-      format.html
-      format.json {
-        render json: @last.as_json, success: true, status: :ok
-      }
-    end
   end
 
   def index

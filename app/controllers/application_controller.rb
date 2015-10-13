@@ -30,5 +30,9 @@ class ApplicationController < ActionController::Base
       }
     end
   end
+
+  def json_unsupported
+    render json: { error: 'JSON not supported' }, success: false, status: :not_found
+  end
 end
 

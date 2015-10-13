@@ -1,6 +1,6 @@
 .order
   %table.order
-    - order.viewable_attributes.each_pair do |key, value|
+    - order.visible_attributes.each_pair do |key, value|
       - if !value.nil?
         %tr
           %td
