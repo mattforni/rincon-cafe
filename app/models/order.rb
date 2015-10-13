@@ -20,7 +20,7 @@ class Order < ActiveRecord::Base
 
   # TODO test
   def self.queue
-    Order.where({status: STATUSES[:pending]}).order(created_at: :desc).limit(MAX_QUEUE_SIZE)
+    Order.where({status: STATUSES[:pending]}).order(created_at: :desc)
   end
 
   # TODO test
@@ -57,6 +57,6 @@ class Order < ActiveRecord::Base
   private
 
   HIDDEN_ATTRIBUTES = [:id, :updated_at, :user_id]
-  MAX_QUEUE_SIZE = 25
+  MAX_QUEUE_SIZE = 15
 end
 

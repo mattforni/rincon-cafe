@@ -22,6 +22,19 @@ class OrdersController < ApplicationController
       end
     end
 
+    # If the queue is currently full and the user is not a barista, deny their request
+    if Order.queue_full? and !current_user.barista
+      respond_to do |format|
+        format.html {
+          flash.alert QUEUE_FULL_MESSAGE
+          redirect_to root_path
+        }
+        format.json {
+          render json: { error: QUEUE_FULL_MESSAGE }, succes: false, status: :bad_request and return
+        }
+      end
+    end
+
     params = create_params
     params[:user_id] = current_user.id
     params[:status] = Options::STATUSES[:pending]
@@ -67,7 +80,8 @@ class OrdersController < ApplicationController
 
   private
 
-  SPAMMING_MESSAGE = 'Sorry, only one drink per hour'
+  SPAMMING_MESSAGE = 'Sorry, only one drink per hour.'
+  QUEUE_FULL_MESSAGE = 'Sorry, the queue is currently full. Try agian later.'
 
   def create_params
     params.require(:order).permit(
