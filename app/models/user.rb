@@ -18,6 +18,15 @@ class User < ActiveRecord::Base
     self.save!
   end
 
+  def spamming?
+    # If there is no last order the user cannot be spamming
+    last = self.orders.last
+    return false if last.nil?
+
+    # Otherwise check to see if the last order was within the past hour
+    last.created_at.to_i < (Time.now + 1.hour).to_i
+  end
+
   def token_expired?
     self.token_expiration.nil? or self.token_expiration.utc < Time.now.utc
   end

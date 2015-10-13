@@ -6,7 +6,21 @@ class OrdersController < ApplicationController
 
   # TODO test
   def create
+    # If the cafe is closed there is nothing to do
     return if closed?
+
+    # If the current user is spamming, deny their request
+    if current_user.spamming?
+      respond_to do |format|
+        format.html {
+          flash.alert SPAMMING_MESSAGE
+          redirect_to root_path
+        }
+        format.json {
+          render json: { error: SPAMMING_MESSAGE }, succes: false, status: :bad_request and return
+        }
+      end
+    end
 
     params = create_params
     params[:user_id] = current_user.id
@@ -52,6 +66,8 @@ class OrdersController < ApplicationController
   end
 
   private
+
+  SPAMMING_MESSAGE = 'Sorry, only one drink per hour'
 
   def create_params
     params.require(:order).permit(
