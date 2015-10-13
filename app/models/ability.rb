@@ -10,7 +10,7 @@ class Ability
     alias_action :create, :read, :update, :destroy, :to => :crud 
 
     # Admins can do any CRUD action to any order
-    can :crud, Order, user: { admin: true }
+    can :crud, Order, user: { barista: true }
 
     # All users can create orders
     can :create, Order

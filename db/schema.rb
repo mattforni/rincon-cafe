@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151009082417) do
+ActiveRecord::Schema.define(version: 20151013024344) do
 
   create_table "orders", force: :cascade do |t|
     t.integer  "user_id",                                                  null: false
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20151009082417) do
     t.string   "udid"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
-    t.boolean  "admin",                  default: false, null: false
+    t.boolean  "barista",                default: false, null: false
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
