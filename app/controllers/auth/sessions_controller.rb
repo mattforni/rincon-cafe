@@ -1,5 +1,5 @@
 class Auth::SessionsController < Devise::SessionsController
-  respond_to :json
+  layout 'auth'
   skip_before_filter :authenticate_user!, only: [:create, :new]
   skip_authorization_check only: [:create, :failure, :show_current_user, :options, :new]
 

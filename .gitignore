@@ -22,3 +22,6 @@ response.*
 .DS_Store
 *~
 
+# Ignore the generated devise views
+app/views/devise
+

@@ -1,0 +1,25 @@
+@import 'global/fonts.css.scss';
+@import 'global/mixins.css.scss';
+
+* {
+  font-family: 'Arial';
+  font-size: 0.9rem;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: #000;
+  text-decoration: none;
+}
+
+div.order {
+  background-color: #eee;
+  margin: 10px 0;
+  padding: 5px;
+}
+
+table.order td {
+  padding: 5px;
+}
+

@@ -1,5 +1,5 @@
 class Auth::RegistrationsController < Devise::RegistrationsController
-  respond_to :json
+  layout 'auth'
 
   def show
     @user = User.find(params[:id])
