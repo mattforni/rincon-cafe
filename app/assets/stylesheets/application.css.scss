@@ -1,6 +1,9 @@
 @import 'global/fonts.css.scss';
 @import 'global/mixins.css.scss';
 
+$button_normal_color: #ddd;
+$button_hover_color: #ccc;
+
 * {
   font-family: 'Arial';
   font-size: 0.9rem;
@@ -11,6 +14,20 @@
 a {
   color: #000;
   text-decoration: none;
+}
+
+.button {
+  background-color: $button_normal_color;
+  border: 2px outset $button_normal_color;
+  color: #000;
+  cursor: pointer;
+
+  padding: 15px 0;
+  @include rounded-corners(5px);
+  &:hover {
+    background-color: $button_hover_color;
+    border: 2px outset $button_hover_color;
+  }
 }
 
 div.order {

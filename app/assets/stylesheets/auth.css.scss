@@ -50,13 +50,8 @@ div#form-wrapper {
     div#other {
       color: #eee;
       text-align: center;
-      div#sign-in {
-        background-color: #ddd;
-        border: 2px outset #ddd;
-        color: #000;
+      div#sign-in, div#sign-up {
         margin: 5px 15px 15px 15px;
-        padding: 15px 0;
-        @include rounded-corners(5px);
       }
     }
   }
