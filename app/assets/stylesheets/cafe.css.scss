@@ -1,0 +1,11 @@
+@import 'application.css.scss';
+
+div#orders {
+  flex-direction: column;
+  justify-content: center;
+  @include flex;
+  div.order {
+    width: 600px;
+  }
+}
+

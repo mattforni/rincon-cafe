@@ -1,8 +1,13 @@
+- action = params[:action]
+- controller = params[:controller]
+- page = File.join(controller, action)
+
 <!DOCTYPE html>
 %html
   %head
     %title='Coffee'
-    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = stylesheet_link_tag controller, media: 'all', 'data-turbolinks-track' => true if asset_exists?(controller, 'css')
+    = stylesheet_link_tag page, media: 'all', 'data-turbolinks-track' => true if asset_exists?(page, 'css')
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body

@@ -1,2 +1,2 @@
-Rails.application.config.assets.precompile += %w( auth.css )
+Rails.application.config.assets.precompile += %w( auth.css cafe.css )
 

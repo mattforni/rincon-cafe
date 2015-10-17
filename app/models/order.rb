@@ -49,7 +49,7 @@ class Order < ActiveRecord::Base
     attrs = self.attributes.reject do |key, _|
       HIDDEN_ATTRIBUTES.include?(key.to_sym)
     end
-    attrs[:ordered_by] = self.user.email
+    attrs[:ordered_by] = self.ordered_by
     attrs[:queue_position] = self.queue_position if self.pending?
     attrs
   end

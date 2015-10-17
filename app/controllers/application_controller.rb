@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
 
   # TODO test
   def closed?
-    return if Cafe.open? # If the cafe is currently open, do nothing
+    return if Cafe.open? or current_user.admin # If the cafe is currently open, do nothing
 
     respond_to do |format|
       format.html {

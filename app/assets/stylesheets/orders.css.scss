@@ -1,0 +1,9 @@
+@import 'application.css.scss';
+
+div#orders {
+  @include flex;
+  div.order {
+    width: 500px;
+  }
+}
+
