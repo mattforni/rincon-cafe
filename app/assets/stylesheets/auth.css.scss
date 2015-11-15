@@ -21,10 +21,14 @@ div#form-wrapper {
   div#errors {
     background-color: #000;
     color: #fff;
+    display: none;
     padding: 15px;
     position: absolute;
     top: 0;
     z-index: 2;
+    &.visible {
+      display: block;
+    }
   }
   div#form {
     background-color: rgba(0, 0, 0, 0.75);

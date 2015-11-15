@@ -3,7 +3,7 @@ require 'notifications'
 
 class OrdersController < ApplicationController
   before_action :closed?, only: [:create, :destroy, :update]
-  load_and_authorize_resource except: [:create, :index, :last]
+  load_and_authorize_resource except: [:create, :index, :last, :new]
 
   # TODO test
   def create
@@ -55,33 +55,35 @@ class OrdersController < ApplicationController
   end
 
   def destroy
+    # TODO implement
   end
 
-  def edit
-    # TODO implement
-
+  # TODO test when no last order/when not json/when all is good
+  def index # JSON only
     respond_to do |format|
-      format.html
-      format.json { json_unsupported }
+      format.json {
+        render json: {
+          orders: Order.where({user: current_user}).order(created_at: :desc).limit(10)
+        }, success: true, status: :ok
+      }
     end
   end
 
-  # TODO test
-  def last
-    @last = current_user.orders.last
+  # TODO test when no last order/when not json/when all is good
+  def last # JSON only
+    respond_to do |format|
+      format.json {
+        render json: {
+          last: current_user.orders.last
+        }, success: true, status: :ok
+      }
+    end
   end
 
-  # TODO test
-  def index
-    @orders = Order.where({user: current_user}).order(created_at: :desc).limit(10)
-  end
-
-  # TODO test
-  def show
-  end
-
-  def update
-    # TODO implement
+  def new # HTML only
+    respond_to do |format|
+      format.html
+    end
   end
 
   private

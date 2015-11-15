@@ -6,6 +6,8 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :null_session
 
+  rescue_from ActionController::UnknownFormat, with: :unknown_format
+
   protected
 
   def authenticate_via_token!
@@ -31,8 +33,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def json_unsupported
-    render json: { error: 'JSON not supported' }, success: false, status: :not_found
+  private
+
+  def unknown_format
+    respond_to do |format|
+      format.html { render 'application/unknown_format', layout: false, status: :not_found }
+      format.json { render 'application/unknown_format', success: false, status: :not_found }
+    end
   end
 end
 

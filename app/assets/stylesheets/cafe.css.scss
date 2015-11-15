@@ -1,11 +1,49 @@
 @import 'application.css.scss';
 
-div#orders {
-  flex-direction: column;
-  justify-content: center;
+$order_height: 50px;
+$order_width: 600px;
+
+
+
+div#queue {
+  align-items: center;
+  flex-flow: column wrap;
+  margin: 5px 0;
   @include flex;
-  div.order {
-    width: 600px;
+  div.queued_order {
+    align-items: center;
+    background-color: $background_color;
+    border: 1px solid #222;
+    height: $order_height;
+    justify-content: space-between;
+    margin: 5px 0;
+    width: $order_width;
+    @include box-shadow(0px, 1px, 2px, #555);
+    @include rounded-corners(5px);
+    @include flex;
+    div.position {
+      background-color: #fff;
+      border: 1px solid #222;
+      font-size: 1.25rem;
+      margin-left: 5px;
+      padding: 5px 0;
+      text-align: center;
+      width: 10%;
+      @include rounded-corners(5px);
+    }
+    div.beverage {
+      font-size: 1.25rem;
+      text-align: center;
+      width: 40%;
+    }
+    div.order_details {
+      margin: 0 15px;
+      text-align: right;
+      width: 50%;
+      div.ordered_at {
+        font-size: 0.75rem;
+      }
+    }
   }
 }
 

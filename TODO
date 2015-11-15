@@ -1,4 +1,7 @@
 - Update registration to include 'name'
 - Cancan exception handling (https://github.com/ryanb/cancan/wiki/exception-handling)
 - Fix user json for sign_up, etc.
+- Auth error messages need to be handled
+- Add name (and nickname) to registration
+- Handle errors generically
 

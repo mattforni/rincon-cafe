@@ -1,6 +1,7 @@
 @import 'global/fonts.css.scss';
 @import 'global/mixins.css.scss';
 
+$background_color: #eee;
 $button_normal_color: #ddd;
 $button_hover_color: #ccc;
 
@@ -30,10 +31,49 @@ a {
   }
 }
 
+div#header {
+  align-items: center;
+  background-color: $background_color;
+  border-bottom: 1px solid black;
+  height: 50px;
+  justify-content: space-between;
+  @include box-shadow(0px, 0px, 2px, #222);
+  @include flex;
+  div#home {
+    margin-left: 15px;
+    width: 25%;
+  }
+  div#title {
+    font-size: 1.25rem;
+    text-align: center;
+    width: 50%;
+  }
+  div#logout {
+    margin-right: 15px;
+    text-align: right;
+    width: 25%;
+  }
+}
+
 div.order {
-  background-color: #eee;
-  margin: 10px 0;
+  background-color: $background_color;
+  margin: 5px 0;
   padding: 5px;
+}
+
+form {
+  &.logout {
+    display: inline;
+  }
+}
+
+input.logout {
+  background: $background_color image_url('icons/logout.png') no-repeat;
+  background-size: 25px 25px;
+  border: none;
+  cursor: pointer;
+  height: 25px;
+  width: 25px;
 }
 
 table.order td {

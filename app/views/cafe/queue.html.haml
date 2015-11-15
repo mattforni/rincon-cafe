@@ -2,7 +2,7 @@
   -# TODO make order a link to new
   = 'The queue is empty! Hurry and order!'
 - else
-  #orders
+  #queue
     - @queue.each do |order|
-      = order_partial order
+      = queued_partial order
 

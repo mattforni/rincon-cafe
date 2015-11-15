@@ -8,12 +8,12 @@ class CafeController < ApplicationController
   def closed
     respond_to do |format|
       format.html
-      format.json { json_unsupported }
     end
   end
 
   # TODO test
   def queue
+    @title = 'Queue'
     @queue = Order.queue
     respond_to do |format|
       format.html

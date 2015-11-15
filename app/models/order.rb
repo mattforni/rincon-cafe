@@ -41,7 +41,7 @@ class Order < ActiveRecord::Base
     return unless self.pending?
 
     Order.queue.each_with_index do |item, index|
-      return index if item.id == self.id
+      return (index + 1) if item.id == self.id
     end
   end
 
