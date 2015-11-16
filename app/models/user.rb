@@ -9,6 +9,13 @@ class User < ActiveRecord::Base
 
   before_save :handle_token
 
+  def can_order?
+    # A barista can always place an order
+    return true if self.barista
+
+    !Order.queue_full?
+  end
+
   def reset_token!
     handle_token(true)
     self.save!

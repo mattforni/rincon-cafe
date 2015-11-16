@@ -5,7 +5,7 @@ module ApplicationHelper
   end
 
   def logout_button
-    button_to ' ', destroy_user_session_path, data: {confirm: 'You sure?'}, method: :delete, class: 'logout', form_class: 'logout'
+    button_to ' ', destroy_user_session_path, data: {confirm: 'Logout for real?'}, method: :delete, class: 'logout', form_class: 'logout'
   end
 
   def order_partial(order)
