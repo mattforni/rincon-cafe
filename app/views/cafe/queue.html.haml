@@ -6,8 +6,9 @@
     = queued_partial order
   #actions
     #add
+      -# TODO add me back in!!!
       - if current_user.can_order?
-        = link_to image_tag('icons/add.png', size: '25x25'), new_order_path
+        =# link_to image_tag('icons/add.png', size: '25x25'), new_order_path
       - else
-        = Order::QUEUE_FULL_MESSAGE
+        =# Order::QUEUE_FULL_MESSAGE
 
