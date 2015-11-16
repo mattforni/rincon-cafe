@@ -1,14 +1,13 @@
 @import 'application.css.scss';
 
 $order_height: 50px;
-$order_width: 600px;
+$content_width: 600px;
 
-
-
-div#queue {
+div#content {
   align-items: center;
-  flex-flow: column wrap;
-  margin: 5px 0;
+  flex-direction: column;
+  margin: 5px auto;
+  width: $content_width;
   @include flex;
   div.queued_order {
     align-items: center;
@@ -17,7 +16,7 @@ div#queue {
     height: $order_height;
     justify-content: space-between;
     margin: 5px 0;
-    width: $order_width;
+    width: 100%;
     @include box-shadow(0px, 1px, 2px, #555);
     @include rounded-corners(5px);
     @include flex;
@@ -43,6 +42,14 @@ div#queue {
       div.ordered_at {
         font-size: 0.75rem;
       }
+    }
+  }
+  div#actions {
+    margin: 5px 0;
+    text-align: right;
+    width: 100%;
+    div#add {
+      margin: 0 5px;
     }
   }
 }

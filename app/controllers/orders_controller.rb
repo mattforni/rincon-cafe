@@ -14,24 +14,24 @@ class OrdersController < ApplicationController
     if current_user.spamming?
       respond_to do |format|
         format.html {
-          flash.alert SPAMMING_MESSAGE
+          flash.alert Order::SPAMMING_MESSAGE
           redirect_to root_path
         }
         format.json {
-          render json: { error: SPAMMING_MESSAGE }, succes: false, status: :bad_request and return
+          render json: { error: Order::SPAMMING_MESSAGE }, succes: false, status: :bad_request and return
         }
       end
     end
 
     # If the queue is currently full and the user is not a barista, deny their request
-    if Order.queue_full? and !current_user.barista
+    if current_user.can_order?
       respond_to do |format|
         format.html {
-          flash.alert QUEUE_FULL_MESSAGE
+          flash.alert Order::QUEUE_FULL_MESSAGE
           redirect_to root_path
         }
         format.json {
-          render json: { error: QUEUE_FULL_MESSAGE }, succes: false, status: :bad_request and return
+          render json: { error: Order::QUEUE_FULL_MESSAGE }, succes: false, status: :bad_request and return
         }
       end
     end
@@ -81,15 +81,14 @@ class OrdersController < ApplicationController
   end
 
   def new # HTML only
+    @title = 'Place Order'
+
     respond_to do |format|
       format.html
     end
   end
 
   private
-
-  SPAMMING_MESSAGE = 'Sorry, only one drink per hour.'
-  QUEUE_FULL_MESSAGE = 'Sorry, the queue is currently full. Try agian later.'
 
   def create_params
     params.require(:order).permit(

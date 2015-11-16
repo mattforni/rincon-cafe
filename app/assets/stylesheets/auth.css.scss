@@ -1,6 +1,7 @@
 @import 'application.css.scss';
 
 $background_color: #FEFEFE;
+$copyright_size: 0.15rem;
 
 div#content {
   align-items: center;
@@ -58,6 +59,20 @@ div#form-wrapper {
         margin: 5px 15px 15px 15px;
       }
     }
+  }
+}
+
+div#copyright {
+  bottom: 0;
+  color: #fff;
+  font-size: $copyright_size;
+  margin: 0 5px 5px 0;
+  position: absolute;
+  right: 0;
+  z-index: 3;
+  a {
+    color: #fff;
+    font-size: $copyright_size;
   }
 }
 

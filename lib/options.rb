@@ -1,7 +1,7 @@
 # TODO change all to maps instead of arrays
 # and change usage across the entire app
 
-module Options 
+module Options
   BEVERAGE = [
     'americano',
     'cappucino',

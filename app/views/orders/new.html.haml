@@ -1,0 +1,13 @@
+#create_form
+  - ['beverage', 'decaf', 'location', 'milk', 'temperature'].each do |option|
+    %div.option{id: option}
+      .label
+        = option.capitalize
+      .options
+        - Options.const_get(option.upcase).each_with_index do |option_choice, index|
+          %div{class: "#{option} option_choice #{index == 0 ? 'selected' : ''}"}
+            = option_display option_choice
+#actions
+  #submit
+    Order
+

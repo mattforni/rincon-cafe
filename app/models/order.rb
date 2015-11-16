@@ -18,6 +18,10 @@ class Order < ActiveRecord::Base
   # Associations
   belongs_to :user
 
+  # Constants
+  SPAMMING_MESSAGE = 'Sorry, only one drink per hour.'
+  QUEUE_FULL_MESSAGE = 'Sorry, the queue is currently full. Try agian later.'
+
   # TODO test
   def self.queue
     Order.where({status: STATUSES[:pending]}).order(created_at: :desc)
@@ -29,7 +33,7 @@ class Order < ActiveRecord::Base
   end
 
   def ordered_by
-    user.email
+    user.email.gsub('@salesforce.com', '')
   end
 
   def pending?
