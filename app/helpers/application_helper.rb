@@ -11,5 +11,9 @@ module ApplicationHelper
   def order_partial(order)
     render partial: 'orders/order', locals: {order: order}
   end
+
+  def toast_message
+    alert || notice || devise_error_messages! rescue nil
+  end
 end
 

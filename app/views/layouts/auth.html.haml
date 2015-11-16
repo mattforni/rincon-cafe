@@ -7,14 +7,10 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    =# TODO don't think need these
-    %p{class: 'alert'}=alert
-    %p{class: 'notice'}=notice
+    = render partial: 'application/toast', locals: {toast: toast_message, error: true}
 
     #content
       = yield
 
-    #copyright
-      &copy;
-      = link_to 'mattforni', 'http://mattforni.com', target: '_blank'
+    = render partial: 'application/copyright'
 

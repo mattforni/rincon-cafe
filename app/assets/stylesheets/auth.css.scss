@@ -1,7 +1,6 @@
 @import 'application.css.scss';
 
 $background_color: #FEFEFE;
-$copyright_size: 0.15rem;
 
 div#content {
   align-items: center;
@@ -19,18 +18,6 @@ div#content {
 div#form-wrapper {
   width: 500px;
   z-index: 1;
-  div#errors {
-    background-color: #000;
-    color: #fff;
-    display: none;
-    padding: 15px;
-    position: absolute;
-    top: 0;
-    z-index: 2;
-    &.visible {
-      display: block;
-    }
-  }
   div#form {
     background-color: rgba(0, 0, 0, 0.75);
     color: white;
@@ -43,7 +30,6 @@ div#form-wrapper {
       padding: 5px 15px;
       &#commit {
         margin-top: 15px;
-
       }
     }
     input {
@@ -59,20 +45,6 @@ div#form-wrapper {
         margin: 5px 15px 15px 15px;
       }
     }
-  }
-}
-
-div#copyright {
-  bottom: 0;
-  color: #fff;
-  font-size: $copyright_size;
-  margin: 0 5px 5px 0;
-  position: absolute;
-  right: 0;
-  z-index: 3;
-  a {
-    color: #fff;
-    font-size: $copyright_size;
   }
 }
 

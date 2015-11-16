@@ -15,13 +15,3 @@
 //= require turbolinks
 //= require_tree .
 
-function dismissToast() {
-  if ($('div#toast').length > 0) { $('div#toast').fadeOut(1000); }
-};
-
-$(function ready() {
-  $('div#dismiss-toast').click(function() {
-    dismissToast(); 
-  });
-});
-

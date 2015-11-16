@@ -1,6 +1,4 @@
 #form-wrapper
-  #errors
-    = devise_error_messages!
   #form
     = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
       .input#email

@@ -2,7 +2,6 @@
 - controller = params[:controller]
 - error = !alert.nil?
 - page = File.join(controller, action)
-- toast = alert || notice
 
 <!DOCTYPE html>
 %html
@@ -14,12 +13,7 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    -if !toast.nil?
-      #toast{class: error ? 'error' : ''}
-        #message
-          = toast
-        #dismiss-toast
-          X
+    = render partial: 'application/toast', locals: {toast: toast_message, error: error}
 
     #header
       #home
@@ -28,6 +22,9 @@
         #title=@title
       #logout
         = logout_button
+
     #content
       = yield
+
+    = render partial: 'application/copyright'
 
