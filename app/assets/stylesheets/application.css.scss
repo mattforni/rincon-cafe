@@ -4,6 +4,10 @@
 $background_color: #eee;
 $button_normal_color: #ddd;
 $button_hover_color: #ccc;
+$header_height: 50px;
+$toast_error: red;
+$toast_success: green;
+$toast_z_index: 1;
 
 * {
   font-family: 'Arial';
@@ -31,16 +35,41 @@ a {
   }
 }
 
+div#toast {
+  align-items: center;
+  background-color: $toast_success;
+  color: #fff;
+  min-height: $header_height;
+  left: 0;
+  justify-content: space-between;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: $toast_z_index;
+  @include box-shadow(0px, 0px, 2px, #222);
+  @include flex;
+  div {
+    padding: 0 15px;
+    &#dismiss-toast {
+      cursor: pointer;
+    }
+  }
+  &.error {
+    background-color: $toast_error;
+  }
+}
+
 div#header {
   align-items: center;
   background-color: $background_color;
   border-bottom: 1px solid black;
-  height: 50px;
+  height: $header_height;
   justify-content: space-between;
+  width: 100%;
   @include box-shadow(0px, 0px, 2px, #222);
   @include flex;
   div#home {
-    margin-left: 15px;
+    margin-left: 10px;
     width: 25%;
   }
   div#title {
@@ -49,7 +78,7 @@ div#header {
     width: 50%;
   }
   div#logout {
-    margin-right: 15px;
+    margin-right: 10px;
     text-align: right;
     width: 25%;
   }

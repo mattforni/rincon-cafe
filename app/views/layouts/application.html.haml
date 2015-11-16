@@ -1,6 +1,8 @@
 - action = params[:action]
 - controller = params[:controller]
+- error = !alert.nil?
 - page = File.join(controller, action)
+- toast = alert || notice
 
 <!DOCTYPE html>
 %html
@@ -11,8 +13,12 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    %p{class: 'alert'}=alert
-    %p{class: 'notice'}=notice
+    -if !toast.nil?
+      #toast{class: error ? 'error' : ''}
+        #message
+          = toast
+        #dismiss-toast
+          X
 
     #header
       #home
