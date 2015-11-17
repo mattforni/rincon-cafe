@@ -24,7 +24,7 @@ class Order < ActiveRecord::Base
 
   # TODO test
   def self.queue
-    Order.where({status: STATUSES[:pending]}).order(created_at: :desc)
+    Order.where({status: STATUS[:pending]}).order(created_at: :desc)
   end
 
   # TODO test
@@ -33,11 +33,12 @@ class Order < ActiveRecord::Base
   end
 
   def ordered_by
+    return user.name if !(user.name.nil? or user.name.empty?)
     user.email.gsub('@salesforce.com', '')
   end
 
   def pending?
-    self.status == STATUSES[:pending]
+    self.status == STATUS[:pending]
   end
 
   def queue_position

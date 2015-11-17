@@ -36,7 +36,7 @@ module Options
     'whole'
   ]
 
-  STATUSES = {
+  STATUS = {
     abandonded: 'abandonded',
     cancelled: 'cancelled',
     in_progress: 'in_progress',

@@ -24,7 +24,7 @@ class OrdersController < ApplicationController
     end
 
     # If the queue is currently full and the user is not a barista, deny their request
-    if current_user.can_order?
+    if !current_user.can_order?
       respond_to do |format|
         format.html {
           flash.alert Order::QUEUE_FULL_MESSAGE
@@ -38,7 +38,7 @@ class OrdersController < ApplicationController
 
     params = create_params
     params[:user_id] = current_user.id
-    params[:status] = Options::STATUSES[:pending]
+    params[:status] = Options::STATUS[:pending]
     @order = Order.create!(params)
 
     Notifications.ios(current_user, 'Your order is now in the queue')

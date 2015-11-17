@@ -9,7 +9,7 @@
             = value
     %tr
       %td
-        = link_to 'Edit', edit_order_path(order) if can?(:update, order) 
+        = link_to 'Edit', edit_order_path(order) if can?(:update, order)
       %td
         = button_to 'Cancel', order_path(order), data: { confirm: 'You sure?' }, method: :delete if can?(:destroy, order)
 
