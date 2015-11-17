@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 
   def can_order?
     # A barista can always place an order
-    return true if self.barista
+    return true if self.barista or self.admin
 
     !Order.queue_full?
   end
