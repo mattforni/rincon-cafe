@@ -1,13 +1,8 @@
 <!DOCTYPE html>
 %html
-  %head
-    %title='Rincon Cafe'
-    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
-    = stylesheet_link_tag 'auth', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
-    = csrf_meta_tags
+  = render partial: 'application/head'
   %body
-    = render partial: 'application/toast', locals: {toast: toast_message, error: true}
+    = handle_toast
 
     #content
       = yield
