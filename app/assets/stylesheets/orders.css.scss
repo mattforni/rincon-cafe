@@ -6,6 +6,7 @@ div#content {
   align-items: center;
   flex-direction: column;
   justify-content: center;
+  margin: 10px auto;
   width: $content_width;
   @include flex;
 }
