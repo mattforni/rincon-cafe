@@ -1,13 +1,16 @@
-#create_form
-  - ['beverage', 'decaf', 'location', 'milk', 'temperature'].each do |option|
-    %div.option{id: option}
-      .label
-        = option.capitalize
-      .options
-        - Options.const_get(option.upcase).each_with_index do |option_choice, index|
-          %div{class: "#{option} option_choice #{index == 0 ? 'selected' : ''}"}
-            = option_display option_choice
-#actions
-  #submit
-    Order
+= form_for @order, id: 'new_order' do |f|
+  #order-form
+    - ['beverage', 'decaf', 'location', 'milk', 'temperature'].each do |option|
+      .option{id: option}
+        .label
+          = option.capitalize
+        .options
+          - options = Options.const_get(option.upcase).collect { |o| [option_display(o), o] }
+          = f.select option.to_sym, options_for_select(options)
+    .option#notes
+      .label='Notes'
+      = f.text_area :notes, id: 'notes'
+  #actions
+    #order-button
+      = f.submit 'Order', id: 'order'
 

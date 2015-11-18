@@ -7,8 +7,7 @@
   #actions
     #add
       - if current_user.can_order?
-        -# TODO add me back in!!
-        =# link_to image_tag('icons/add.png', size: '25x25'), new_order_path
+        = link_to image_tag('icons/add.png', size: '25x25'), new_order_path
       - else
         = Order::QUEUE_FULL_MESSAGE
 

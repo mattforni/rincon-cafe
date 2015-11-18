@@ -1,8 +1,6 @@
 @import 'application.css.scss';
 
 $content_width: 600px;
-$option_background_color: #fff;
-$selected_option_background_color: #bbb;
 
 div#content {
   align-items: center;
@@ -10,55 +8,5 @@ div#content {
   justify-content: center;
   width: $content_width;
   @include flex;
-  div#create_form {
-    background-color: $background_color;
-    border: 1px solid #222;
-    flex-direction: column;
-    margin: 5px 0;
-    padding: 5px;
-    width: 100%;
-    @include box-shadow(0px, 1px, 2px, #555);
-    @include flex;
-    @include rounded-corners(5px);
-    div.option {
-      margin: 5px 0;
-      div.label {
-        font-size: 1.15rem;
-      }
-      div.options {
-        background-color: $option_background_color;
-        border: 1px solid #222;
-        flex-wrap: wrap;
-        @include flex;
-        @include rounded-corners(4px);
-        div.option_choice {
-          background-color: $background_color;
-          border: 1px solid #222;
-          cursor: pointer;
-          margin: 5px;
-          padding: 5px;
-          @include rounded-corners(2px);
-          &.selected {
-            background-color: $selected_option_background_color;
-          }
-        }
-      }
-    }
-  }
-  div#actions {
-    justify-content: flex-end;
-    margin: 5px;
-    width: 100%;
-    @include flex;
-    div#submit {
-      border: 1px solid #000;
-      cursor: pointer;
-      padding: 5px;
-      @include rounded-corners(5px);
-      div#submit:hover {
-        background-color: #ddd;
-      }
-    }
-  }
 }
 

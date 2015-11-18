@@ -1,0 +1,64 @@
+@import 'orders.css.scss';
+
+form#new_order {
+  width: 100%;
+  div#order-form {
+    background-color: $background_color;
+    border: $border_size solid $border_color; 
+    padding-top: 0.75rem;
+    width: 100%;
+    @include rounded-corners($corner-radius);
+    div.option {
+      margin-bottom: 0.75rem;
+      padding: 0 $padding_large;
+      div.options {
+        background-color: $white;
+        border: $border_size solid $border_color; 
+        overflow: hidden;
+        @include rounded-corners($corner_radius);
+        @include box-shadow(0px, 1px, 2px, #555);
+        select {
+          background: transparent;
+          border: 0;
+          cursor: pointer;
+          font-size: $font_size_large;
+          height: 2rem;
+          padding: $padding;
+          width: 100%;
+          -webkit-appearance: none;
+        }
+      }
+      textarea#notes {
+        height: 7.5rem;
+        resize: none;
+        width: 100%;
+        @include rounded-corners($corner_radius);
+        @include box-shadow(0px, 1px, 2px, #555);
+      }
+    }
+  }
+  div#actions {
+    justify-content: flex-end;
+    padding: $padding_large 0;
+    width: 100%;
+    @include flex;
+    div#order-button {
+      background-color: $button_normal_color;
+      border: $border_size solid $border_color; 
+      cursor: pointer;
+      @include box-shadow(0px, 1px, 2px, #555);
+      @include rounded-corners($corner_radius);
+      &.hover {
+        background-color: $button_hover_color;
+      }
+      input#order {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        font-size: $font_size_large;
+        padding: 0.5rem;
+      }
+    }
+  }
+}
+

@@ -22,6 +22,9 @@ class User < ActiveRecord::Base
   end
 
   def spamming?
+    # If the user is an admin they cannot be spamming
+    return false if self.admin
+
     # If there is no last order the user cannot be spamming
     last = self.orders.last
     return false if last.nil?

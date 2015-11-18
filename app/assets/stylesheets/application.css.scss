@@ -2,12 +2,19 @@
 @import 'global/mixins.css.scss';
 
 $background_color: #eee;
-$button_normal_color: #ddd;
-$button_hover_color: #ccc;
+$border_size: 0.125rem;
+$border_color: #222;
+$button_normal_color: #fff;
+$button_hover_color: #ddd;
+$corner_radius: 0.25rem;
+$font_size_large: 1.25rem;
 $header_height: 50px;
+$padding: 0.25rem;
+$padding_large: 0.75rem;
 $toast_error: red;
 $toast_success: green;
 $toast_z_index: 1;
+$white: #fff;
 
 * {
   font-family: 'Arial';

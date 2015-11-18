@@ -1,7 +1,7 @@
 - if !(message.nil? or message.empty?)
   #toast{class: error ? 'error' : ''}
     #message
-      = message
+      = message.html_safe
     #dismiss-toast
       X
 

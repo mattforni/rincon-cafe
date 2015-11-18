@@ -14,8 +14,7 @@ class OrdersController < ApplicationController
     if current_user.spamming?
       respond_to do |format|
         format.html {
-          flash.alert Order::SPAMMING_MESSAGE
-          redirect_to root_path
+          redirect_to root_path, alert: Order::SPAMMING_MESSAGE and return
         }
         format.json {
           render json: { error: Order::SPAMMING_MESSAGE }, succes: false, status: :bad_request and return
@@ -27,8 +26,7 @@ class OrdersController < ApplicationController
     if !current_user.can_order?
       respond_to do |format|
         format.html {
-          flash.alert Order::QUEUE_FULL_MESSAGE
-          redirect_to root_path
+          redirect_to root_path, alert: Order::QUEUE_FULL_MESSAGE and return
         }
         format.json {
           render json: { error: Order::QUEUE_FULL_MESSAGE }, succes: false, status: :bad_request and return
@@ -39,18 +37,25 @@ class OrdersController < ApplicationController
     params = create_params
     params[:user_id] = current_user.id
     params[:status] = Options::STATUS[:pending]
-    @order = Order.create!(params)
+    params.each_pair { |key, value| params[key] = nil if (value.empty? rescue false) }
 
-    Notifications.ios(current_user, 'Your order is now in the queue')
+    begin
+      @order = Order.create!(params)
+    rescue ActiveRecord::RecordInvalid => e
+      respond_to do |format|
+        alert = '<h2>There was an error while trying to save the Order</h2><ul>'
+        e.record.errors.full_messages.each { |error| alert += "<li>#{error}</li>" }
+        alert += '</ul>'
+        format.html { redirect_to new_order_path, alert: alert and return }
+        format.json { render json: { errors: e.record.errors.full_messages }, success: false, status: :bad_request and return }
+      end
+    end
+
+    Notifications.ios(current_user, ORDER_CREATED_MESSAGE)
 
     respond_to do |format|
-      format.html {
-        # TODO add alert
-        redirect_to root_path
-      }
-      format.json {
-        render success: true, status: :created
-      }
+      format.html { redirect_to root_path, notice: ORDER_CREATED_MESSAGE }
+      format.json { render success: true, status: :created }
     end
   end
 
@@ -82,6 +87,7 @@ class OrdersController < ApplicationController
 
   def new # HTML only
     @title = 'Place Order'
+    @order = Order.new
 
     respond_to do |format|
       format.html
@@ -89,6 +95,8 @@ class OrdersController < ApplicationController
   end
 
   private
+
+  ORDER_CREATED_MESSAGE = 'Your order is now in the queue'
 
   def create_params
     params.require(:order).permit(
