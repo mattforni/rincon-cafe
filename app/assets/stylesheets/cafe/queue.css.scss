@@ -82,6 +82,7 @@ div.queued_order {
     div.notes {
       background-color: $white;
       border: 1px solid $border_color; 
+      color: $black;
       margin: $inlay_margin;
       padding: $inlay_margin;
       @include box-shadow(0px, 1px, 2px, #555);
