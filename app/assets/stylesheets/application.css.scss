@@ -1,20 +1,6 @@
 @import 'global/copyright.css.scss';
 @import 'global/mixins.css.scss';
-
-$background_color: #eee;
-$border_size: 0.125rem;
-$border_color: #222;
-$button_normal_color: #fff;
-$button_hover_color: #ddd;
-$corner_radius: 0.25rem;
-$font_size_large: 1.25rem;
-$header_height: 50px;
-$padding: 0.25rem;
-$padding_large: 0.75rem;
-$toast_error: red;
-$toast_success: green;
-$toast_z_index: 1;
-$white: #fff;
+@import 'global/tokens.css.scss';
 
 * {
   font-family: 'Arial';
@@ -41,9 +27,14 @@ a {
   }
 }
 
+img.action {
+  height: 1.75rem;
+  width: 1.75rem;
+}
+
 div#toast {
   align-items: center;
-  background-color: $toast_success;
+  background-color: $success_color;
   color: #fff;
   min-height: $header_height;
   left: 0;
@@ -69,7 +60,7 @@ div#toast {
     }
   }
   &.error {
-    background-color: $toast_error;
+    background-color: $error_color;
   }
 }
 
@@ -98,6 +89,21 @@ div#header {
   }
 }
 
+div#content {
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin: 10px auto;
+  width: $content_width;
+  @include flex;
+  div#actions {
+    text-align: right;
+    width: 100%;
+    div#add {
+      margin: 0 5px;
+    }
+  }
+}
 
 div#copyright {
   @include copyright;
@@ -107,6 +113,55 @@ div.order {
   background-color: $background_color;
   margin: 5px 0;
   padding: 5px;
+}
+
+input.icon-button {
+  border: none;
+  cursor: pointer;
+  height: $icon_size_small;
+  width: $icon_size_small;
+  @include box-shadow(0px, 1px, 2px, #555);
+  @include rounded-corners(1.5rem);
+  &.abandon-icon{
+    background: $white image_url('icons/abandon.png') no-repeat;
+    background-size: $icon_size_small;
+    &.hover {
+      background: $button_hover_color image_url('icons/abandon.png') no-repeat;
+      background-size: $icon_size_small;
+    }
+  }
+  &.begin-icon{
+    background: $white image_url('icons/begin.png') no-repeat;
+    background-size: $icon_size_small;
+    &.hover {
+      background: $button_hover_color image_url('icons/begin.png') no-repeat;
+      background-size: $icon_size_small;
+    }
+  }
+  &.cancel-icon{
+    background: $white image_url('icons/cancel.png') no-repeat;
+    background-size: $icon_size_small;
+    &.hover {
+      background: $button_hover_color image_url('icons/cancel.png') no-repeat;
+      background-size: $icon_size_small;
+    }
+  }
+  &.finish-icon{
+    background: $white image_url('icons/finish.png') no-repeat;
+    background-size: $icon_size_small;
+    &.hover {
+      background: $button_hover_color image_url('icons/finish.png') no-repeat;
+      background-size: $icon_size_small;
+    }
+  }
+  &.retrieve-icon{
+    background: $white image_url('icons/retrieve.png') no-repeat;
+    background-size: $icon_size_small;
+    &.hover {
+      background: $button_hover_color image_url('icons/retrieve.png') no-repeat;
+      background-size: $icon_size_small;
+    }
+  }
 }
 
 form {

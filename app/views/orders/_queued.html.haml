@@ -1,11 +1,19 @@
-.queued_order
+- actions = order.get_actions(current_user)
+
+.queued_order{class: order.status}
   .position
     = order.queue_position
   .beverage
     = option_display order.beverage
+  .status
+    = option_display order.status
   .order_details
     .ordered_by
       = order.ordered_by
     .ordered_at
       = "#{time_ago_in_words order.created_at} ago"
+    - if !actions.empty?
+      .actions
+        - actions.each do |action|
+          = button_to ' ', order_path(action.order_id), action.html_options
 

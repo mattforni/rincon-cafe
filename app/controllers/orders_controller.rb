@@ -36,7 +36,7 @@ class OrdersController < ApplicationController
 
     params = create_params
     params[:user_id] = current_user.id
-    params[:status] = Options::STATUS[:pending]
+    params[:status] = Coffee::Options::STATUS[:pending]
     params.each_pair { |key, value| params[key] = nil if (value.empty? rescue false) }
 
     begin
@@ -57,10 +57,6 @@ class OrdersController < ApplicationController
       format.html { redirect_to root_path, notice: ORDER_CREATED_MESSAGE }
       format.json { render success: true, status: :created }
     end
-  end
-
-  def destroy
-    # TODO implement
   end
 
   # TODO test when no last order/when not json/when all is good
@@ -94,9 +90,31 @@ class OrdersController < ApplicationController
     end
   end
 
+  def update
+    # TODO implement
+    status = params[:status]
+
+    # Only the user who made an order can cancel it
+    if status == Coffee::Options::STATUS[:cancelled]
+      if @order.user.id != current_user.id
+        redirect_to root_url, alert: NO_PERMISSION_MESSAGE and return
+      end
+    else
+      if !current_user.elevated?
+        redirect_to root_url, alert: NO_PERMISSION_MESSAGE and return
+      end
+    end
+
+    @order.status = status
+    @order.save!
+
+    redirect_to root_url, notice: "Successfully set order status to #{Coffee::Options::display status}."
+  end
+
   private
 
   ORDER_CREATED_MESSAGE = 'Your order is now in the queue'
+  NO_PERMISSION_MESSAGE = 'You do not have permission to update this order.'
 
   def create_params
     params.require(:order).permit(

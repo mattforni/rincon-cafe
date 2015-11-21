@@ -1,3 +1,5 @@
+require 'options'
+
 module ApplicationHelper
   def asset_exists?(filename, extension)
     return false if filename.nil? or filename.empty? or extension.nil? or extension.empty?
@@ -6,6 +8,10 @@ module ApplicationHelper
 
   def logout_button
     button_to ' ', destroy_user_session_path, data: {confirm: 'Logout for real?'}, method: :delete, class: 'logout', form_class: 'logout'
+  end
+
+  def option_display(option)
+    Coffee::Options::display(option)
   end
 
   def order_partial(order)

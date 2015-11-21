@@ -1,53 +1,58 @@
 # TODO change all to maps instead of arrays
 # and change usage across the entire app
 
-module Options
-  BEVERAGE = [
-    'americano',
-    'cappucino',
-    'coffee',
-    'chai',
-    'dirty_chai',
-    'espesso',
-    'hot_chocolate',
-    'latte',
-    'macchiato',
-    'mocha',
-    'steam_milk',
-    'white_mocha'
-  ]
+module Coffee 
+  module Options
+    def self.display(option)
+      option.split('_').each{|word| word.capitalize!}.join(' ') rescue 'N/A'
+    end
 
-  DECAF = [
-    nil,
-    'decaf',
-    'halfcaf'
-  ]
+    BEVERAGE = [
+      'americano',
+      'cappucino',
+      'coffee',
+      'chai',
+      'dirty_chai',
+      'espesso',
+      'hot_chocolate',
+      'latte',
+      'macchiato',
+      'mocha',
+      'steam_milk',
+      'white_mocha'
+    ]
 
-  LOCATION = [
-    'here',
-    'to_go'
-  ]
+    DECAF = [
+      nil,
+      'decaf',
+      'halfcaf'
+    ]
 
-  MILK = [
-    nil,
-    'almond',
-    'skim',
-    'soy',
-    'whole'
-  ]
+    LOCATION = [
+      'here',
+      'to_go'
+    ]
 
-  STATUS = {
-    abandonded: 'abandonded',
-    cancelled: 'cancelled',
-    in_progress: 'in_progress',
-    made: 'made',
-    pending: 'pending',
-    retrieved: 'retrieved'
-  }
+    MILK = [
+      nil,
+      'almond',
+      'skim',
+      'soy',
+      'whole'
+    ]
 
-  TEMPERATURE = [
-    'cold',
-    'hot'
-  ]
+    STATUS = {
+      abandonded: 'abandonded',
+      cancelled: 'cancelled',
+      in_progress: 'in_progress',
+      made: 'made',
+      pending: 'pending',
+      retrieved: 'retrieved'
+    }
+
+    TEMPERATURE = [
+      'cold',
+      'hot'
+    ]
+  end
 end
-

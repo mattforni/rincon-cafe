@@ -10,10 +10,14 @@ class User < ActiveRecord::Base
   before_save :handle_token
 
   def can_order?
-    # A barista can always place an order
-    return true if self.barista or self.admin
+    # An elevated user can always place an order
+    return true if self.elevated?
 
     !Order.queue_full?
+  end
+
+  def elevated?
+    self.barista or self.admin
   end
 
   def reset_token!

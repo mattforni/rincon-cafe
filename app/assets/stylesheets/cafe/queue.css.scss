@@ -1,4 +1,6 @@
-@import 'cafe.css.scss';
+@import 'application.css.scss';
+
+$order_height: 5rem;
 
 div.queued_order {
   align-items: center;
@@ -11,28 +13,73 @@ div.queued_order {
   @include box-shadow(0px, 1px, 2px, #555);
   @include rounded-corners(5px);
   @include flex;
+  &.made {
+    background-color: $success_color;
+    color: $white;
+  }
+  &.in_progress {
+    background-color: $in_progress_color;
+  }
   div.position {
+    align-items: center;
     background-color: #fff;
     border: 1px solid #222;
+    color: $black;
     font-size: 1.25rem;
+    height: $order_height / 2;
+    justify-content: center;
     margin-left: 5px;
     padding: 5px 0;
     text-align: center;
     width: 10%;
+    @include box-shadow(0px, 1px, 2px, #555);
+    @include flex;
     @include rounded-corners(5px);
   }
   div.beverage {
-    font-size: 1.25rem;
+    font-size: $font_size_larger;
     margin: 0 10px;
     text-align: left;
-    width: 40%;
+    width: 35%;
+  }
+  div.status {
+    font-size: $font_size_larger;
+    margin: 0 10px;
+    width: 20%;
   }
   div.order_details {
     margin: 0 15px;
     text-align: right;
-    width: 50%;
+    width: 35%;
     div.ordered_at {
       font-size: 0.75rem;
+    }
+  }
+  div.actions {
+    justify-content: flex-end;
+    margin-top: 0.5rem;
+    @include flex;
+    input.icon-button {
+      margin-left: 1rem;
+    }
+  }
+}
+
+div#actions {
+  justify-content: flex-end;
+  @include flex;
+  div#add {
+    font-size: $font_size_large;
+    height: $icon_size;
+    width: $icon_size;
+    @include box-shadow(0px, 1px, 2px, #555);
+    @include rounded-corners(1.5rem);
+    &.hover {
+      background-color: $button_hover_color;
+    }
+    img {
+      height: $icon_size;
+      width: $icon_size;
     }
   }
 }

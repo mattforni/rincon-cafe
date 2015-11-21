@@ -20,7 +20,7 @@ class Ability
 
     # Users can destroy or update their own orders if they are still pending
     # There may be further restrictions on these actions, but those are handled in the controller
-    can [:destroy, :update], Order, user_id: user.id, status: Options::STATUS[:pending]
+    can [:destroy, :update], Order, user_id: user.id, status: Coffee::Options::STATUS[:pending]
   end
 end
 

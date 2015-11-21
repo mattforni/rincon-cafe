@@ -1,4 +1,4 @@
-@import 'orders.css.scss';
+@import 'application.css.scss';
 
 form#new_order {
   width: 100%;
@@ -21,7 +21,7 @@ form#new_order {
           background: transparent;
           border: 0;
           cursor: pointer;
-          font-size: $font_size_large;
+          font-size: $font_size_larger;
           height: 2rem;
           padding: $padding;
           width: 100%;
@@ -55,7 +55,7 @@ form#new_order {
         background: transparent;
         border: none;
         cursor: pointer;
-        font-size: $font_size_large;
+        font-size: $font_size_larger;
         padding: 0.5rem;
       }
     }

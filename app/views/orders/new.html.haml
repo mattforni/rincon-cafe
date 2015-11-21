@@ -5,7 +5,7 @@
         .label
           = option.capitalize
         .options
-          - options = Options.const_get(option.upcase).collect { |o| [option_display(o), o] }
+          - options = Coffee::Options.const_get(option.upcase).collect { |o| [option_display(o), o] }
           = f.select option.to_sym, options_for_select(options)
     .option#notes
       .label='Notes'

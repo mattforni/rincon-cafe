@@ -15,3 +15,13 @@
 //= require turbolinks
 //= require_tree .
 
+const HOVER_CLASS = 'hover';
+
+$(function ready() {
+  $('input.icon-button').hover(function mouseenter() {
+    $(this).addClass(HOVER_CLASS);
+  }, function mouseleave() {
+    $(this).removeClass(HOVER_CLASS);
+  });
+});
+
