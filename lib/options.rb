@@ -56,3 +56,4 @@ module Coffee
     ]
   end
 end
+

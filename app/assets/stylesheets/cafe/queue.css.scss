@@ -1,13 +1,15 @@
 @import 'application.css.scss';
 
-$order_height: 5rem;
+$inlay_margin: 0.5rem;
+$order_height: 5.5rem;
 
 div.queued_order {
   align-items: center;
   background-color: $background_color;
   border: 1px solid #222;
-  height: $order_height;
-  justify-content: space-between;
+  flex-direction: column;
+  min-height: $order_height;
+  justify-content: center;
   margin-bottom: 10px;
   width: 100%;
   @include box-shadow(0px, 1px, 2px, #555);
@@ -20,47 +22,75 @@ div.queued_order {
   &.in_progress {
     background-color: $in_progress_color;
   }
-  div.position {
+  div.main {
     align-items: center;
-    background-color: #fff;
-    border: 1px solid #222;
-    color: $black;
-    font-size: 1.25rem;
-    height: $order_height / 2;
-    justify-content: center;
-    margin-left: 5px;
-    padding: 5px 0;
-    text-align: center;
-    width: 10%;
-    @include box-shadow(0px, 1px, 2px, #555);
+    justify-content: space-between;
+    margin: $inlay_margin 0;
+    width: 100%;
     @include flex;
-    @include rounded-corners(5px);
-  }
-  div.beverage {
-    font-size: $font_size_larger;
-    margin: 0 10px;
-    text-align: left;
-    width: 35%;
-  }
-  div.status {
-    font-size: $font_size_larger;
-    margin: 0 10px;
-    width: 20%;
-  }
-  div.order_details {
-    margin: 0 15px;
-    text-align: right;
-    width: 35%;
-    div.ordered_at {
-      font-size: 0.75rem;
+    div.position {
+      align-items: center;
+      background-color: #fff;
+      border: 1px solid #222;
+      color: $black;
+      font-size: 1.25rem;
+      height: $order_height / 2;
+      justify-content: center;
+      margin-left: $inlay_margin;
+      padding: 5px 0;
+      text-align: center;
+      width: 10%;
+      @include box-shadow(0px, 1px, 2px, #555);
+      @include flex;
+      @include rounded-corners(5px);
+    }
+    div.drink_details {
+      flex-direction: column;
+      text-align: left;
+      margin: 0 0.5rem;
+      width: 35%;
+      @include flex;
+      div.beverage {
+        font-size: $font_size_larger;
+      }
+    }
+    div.status {
+      font-size: $font_size_larger;
+      margin: 0 10px;
+      text-align: center;
+      width: 20%;
+    }
+    div.order_details {
+      margin-right: $inlay_margin;
+      text-align: right;
+      width: 35%;
+      div.ordered_at {
+        font-size: 0.75rem;
+      }
+    }
+    div.actions {
+      justify-content: flex-end;
+      margin-top: 0.5rem;
+      @include flex;
+      input.icon-button {
+        margin-left: 1rem;
+      }
     }
   }
-  div.actions {
-    justify-content: flex-end;
-    margin-top: 0.5rem;
-    @include flex;
-    input.icon-button {
-      margin-left: 1rem;
+  div.secondary {
+    width: 100%;
+    div.notes {
+      background-color: $white;
+      border: 1px solid $border_color; 
+      margin: $inlay_margin;
+      padding: $inlay_margin;
+      @include box-shadow(0px, 1px, 2px, #555);
+      @include rounded-corners(5px);
+      span#notes {
+        font-size: $font_size_large;
+        margin-right: $inlay_margin;
+        text-decoration: underline;
+      }
     }
   }
 }
