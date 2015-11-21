@@ -10,7 +10,7 @@ class Ability
     alias_action :create, :read, :update, :destroy, :to => :crud 
 
     # Admins can do any CRUD action to any order
-    can :crud, Order if user.barista
+    can :crud, Order if user.elevated?
 
     # All users can create orders
     can :create, Order
@@ -20,7 +20,7 @@ class Ability
 
     # Users can destroy or update their own orders if they are still pending
     # There may be further restrictions on these actions, but those are handled in the controller
-    can [:destroy, :update], Order, user_id: user.id, status: Coffee::Options::STATUS[:pending]
+    can :update, Order, user_id: user.id, status: Coffee::Options::STATUS[:pending]
   end
 end
 
