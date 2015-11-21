@@ -1,3 +1,5 @@
+//= require application
+
 $(function ready() {
   $('div#order-button').hover(function mouseenter() {
     $(this).addClass(HOVER_CLASS);

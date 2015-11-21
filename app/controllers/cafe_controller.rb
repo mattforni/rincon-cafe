@@ -16,7 +16,9 @@ class CafeController < ApplicationController
     @title = 'Queue'
     @queue = Order.queue
     respond_to do |format|
-      format.html
+      format.html {
+        render layout: false and return if params[:refresh]
+      }
       format.json {
         render json: { queue: @queue }, success: true, status: :ok
       }

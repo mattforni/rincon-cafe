@@ -8,9 +8,10 @@
     .drink_details
       .beverage
         = "#{option_display order.temperature} #{option_display order.beverage}"
-      .optional
-        = option_display order.milk if !order.milk.nil?
-        = option_display order.decaf if !order.decaf.nil?
+      - if !(order.milk.nil? && order.decaf.nil?)
+        .optional
+          = option_display order.milk if !order.milk.nil?
+          = option_display order.decaf if !order.decaf.nil?
       .location
         = option_display order.location
     .status
