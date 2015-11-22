@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: {
     confirmations: 'auth/confirmations',
+    passwords: 'auth/passwords',
     registrations: 'auth/registrations',
     sessions: 'auth/sessions'
   }

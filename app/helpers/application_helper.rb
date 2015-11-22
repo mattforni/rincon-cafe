@@ -20,6 +20,7 @@ module ApplicationHelper
 
   def handle_toast
     message = alert || notice || devise_error_messages! rescue nil
+    return if message.nil? || message.empty?
     error = !(alert || devise_error_messages!).nil? rescue false
     render partial: 'application/toast', locals: {message: message, error: error}
   end

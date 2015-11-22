@@ -7,7 +7,8 @@
       = order.queue_position
     .drink_details
       .beverage
-        = "#{option_display order.temperature} #{option_display order.beverage}"
+        = option_display order.temperature unless order.beverage.include? order.temperature
+        = option_display order.beverage
       - if !(order.milk.nil? && order.decaf.nil?)
         .optional
           = option_display order.milk if !order.milk.nil?

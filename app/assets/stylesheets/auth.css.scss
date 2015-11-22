@@ -48,6 +48,13 @@ div#form-wrapper {
       div#sign-in, div#sign-up {
         margin: 5px 15px 15px 15px;
       }
+      div#forgot {
+        margin-right: 1rem;
+        text-align: right;
+        a {
+          color: $white;
+        }
+      }
     }
   }
 }

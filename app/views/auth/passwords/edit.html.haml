@@ -1,0 +1,16 @@
+#form-wrapper
+  #form
+    = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+      = f.hidden_field :reset_password_token
+
+      .input#password
+        - placeholder = 'password'
+        - placeholder = "#{placeholder} (#{@minimum_password_length} characters minimum)" if @minimum_password_length
+        = f.password_field :password, autofocus: true, autocomplete: 'off', placeholder: placeholder
+
+      .input#password-confirmation
+        = f.password_field :password_confirmation, autocomplete: 'off', placeholder: 'password confirmation'
+
+      .input#commit
+        = f.submit 'update password'
+

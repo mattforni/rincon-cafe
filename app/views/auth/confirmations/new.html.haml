@@ -5,5 +5,5 @@
         = f.email_field :email, autofocus: true, placeholder: 'email', value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email)
 
       .input#commit
-        = f.submit 'resend confirmation'
+        = f.submit 'resend email confirmation'
 
