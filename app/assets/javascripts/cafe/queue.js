@@ -19,7 +19,7 @@ function BackgroundRefresh() {
       }
       refresh(); // Continually refresh
     }).fail(function error(data) {
-      alert(data);
+      // TODO maybe do something
     });
   };
 
